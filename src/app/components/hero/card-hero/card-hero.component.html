@@ -1,0 +1,20 @@
+<article>
+    <div class="card">
+  
+      <img src="{{hero.image.url}}" alt="" />
+        
+      <div class="card-body">
+        <h4 class="card-title">{{ hero.name }}</h4>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button [routerLink]="['/hero-details', hero.id]" class="btn btn-primary me-md-2" type="button">See details</button>
+        </div>
+      </div>
+  
+      <div class="multi-button">
+        <button class="fas fa-heart" (click)="toggleFavorite()">
+          <img rel="preload" as="image" width="21" height="21" src="../../../../assets/icons/{{getIcon()}}" alt="add" />
+        </button>
+      </div>
+  
+    </div>
+  </article>

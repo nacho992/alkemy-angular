@@ -1,0 +1,120 @@
+<div class="grid" *ngIf="hero$ | async as hero">
+    <button (click)="onGoBack()" class="btn btn-outline-primary">Back</button>
+    <div class="card border-secondary mb-3">
+        <div class="header">
+            <h2>{{ hero.name }}</h2>
+            <small class="text-muted">{{ hero.biography['full-name']}}</small>
+        </div>
+
+        <div class="grid-in">
+
+            <div class="img-card in-card-grid-1">
+                <img src="{{hero.image.url}}" alt="">
+            </div>
+
+            <div class="in-card-grid-2">
+
+                <div class="card-body">
+      
+                    <ul class="nav nav-tabs">
+                      <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#appearance">Appearance</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#powerstats">Power stats</a>
+                      </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+              
+                      <div class="tab-pane fade" id="appearance">
+                        <ol class="list-group list-group-numbered">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class="fw-bold">eye color</div>
+                                {{ hero.appearance['eye-color']}}
+                              </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class="fw-bold">gender</div>
+                                {{ hero.appearance.gender}}
+                              </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class="fw-bold">height</div>
+                                {{ hero.appearance.height[0]}}
+                              </div>
+                              <span class="badge bg-primary rounded-pill"> {{ hero.appearance.height[1]}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">weight</div>
+                                  {{ hero.appearance.weight[0]}}
+                                </div>
+                                <span class="badge bg-primary rounded-pill"> {{ hero.appearance.weight[1]}}</span>
+                              </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">hair color</div>
+                                  {{ hero.appearance['hair-color']}}
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">race</div>
+                                  {{ hero.appearance.race}}
+                                </div>
+                            </li>
+                          </ol>
+                      </div>
+              
+                      <div class="tab-pane fade active show" id="powerstats">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">combat</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill"> {{ hero.powerstats.combat}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">durability</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill"> {{ hero.powerstats.durability}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">intelligence</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill"> {{ hero.powerstats.intelligence}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">power</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill"> {{ hero.powerstats.power}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">speed</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill"> {{ hero.powerstats.speed}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">strength</div>
+                                </div>
+                                <span class="badge bg-primary rounded-pill"> {{ hero.powerstats.strength}}</span>
+                            </li>
+                          </ul>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

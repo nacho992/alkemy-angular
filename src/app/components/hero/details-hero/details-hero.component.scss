@@ -1,0 +1,41 @@
+.grid{
+    max-width: 1200px;
+    margin: auto;
+    display: block;
+    z-index: 2;
+}
+
+.grid-in{
+    margin: 15px;
+    padding: 40px 40px 40px 40px;
+    display: grid;
+    gap: .5rem;
+    --auto-grid-min-size: 25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    z-index: 2;
+} 
+
+.header{
+    padding: 10px;
+}
+
+.card {
+    box-shadow: 0px 0px 10px #ffffff, 0px 0px 10px #848484;
+    border: none;
+    overflow: hidden;
+    margin: 100px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+}
+
+img {
+    width: 90%;
+}
+
+button{
+    z-index: 2;
+    margin: 5px 5px 5px 5px;
+    color: #ffffff;
+    border-color: #ffffff;
+    background-color: #cc0000;
+}
