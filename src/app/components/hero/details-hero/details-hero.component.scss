@@ -1,3 +1,6 @@
+*{
+    font-family: 'Poppins',sans-serif;
+}
 .grid{
     max-width: 1200px;
     margin: auto;
@@ -13,7 +16,6 @@
     --auto-grid-min-size: 25rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
-    z-index: 2;
 } 
 
 .header{
@@ -24,7 +26,7 @@
     box-shadow: 0px 0px 10px #ffffff, 0px 0px 10px #848484;
     border: none;
     overflow: hidden;
-    margin: 100px 15px 15px 15px;
+    margin: 30px 15px 15px 15px;
     border-radius: 15px 15px 15px 15px;
 }
 
@@ -39,3 +41,14 @@ button{
     border-color: #ffffff;
     background-color: #cc0000;
 }
+
+@media (max-width: 530px) {
+    .grid-in{
+      margin: 15px;
+      padding: 40px 40px 40px 40px;
+      gap: .5rem;
+      --auto-grid-min-size: 16rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    } 
+  }

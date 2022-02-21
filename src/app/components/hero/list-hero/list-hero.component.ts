@@ -30,6 +30,7 @@ export class ListHeroComponent implements OnInit {
     if (this.query != '') {
       this.getHeroByQuery()
     }
+    this.getHeros();
   }
 
   getTeam(): void{
@@ -43,29 +44,32 @@ export class ListHeroComponent implements OnInit {
     }
   }
 
+  private getHeros(){
+    /* if there is no query, this method checks if there is any previous data to show, if there is, it returns them */
+    this.heroService.herosData.subscribe( res => {
+      if (res?.length > 0) {
+        this.heros = [...res]
+      }
+    })
+  }
+
   private getHeroByQuery(): void {
     /*  */
     if (this.query !== '') {
       this.heroService
-        .getByName(this.query)
-        .pipe(take(1))
-        .subscribe((res: ResponseName) => {
+        .getByName(this.query).subscribe(res => {
           if (res.response == 'success') {
-            this.responseApi = true
-            this.heros = [...res.results];
+            this.heros = [...res.results]
           }
           if (res.response == 'error') {
-            this.responseApi = false;
             alert('character with given name not found')
-            this.mensaje = 'character with given name not found'
-            this.heros = [];
+            this.heros = []
           }
           },
           error => {
-            this.responseApi = false;
             alert('character with given name not found')
             console.log(error)
-          });
+          })
     }
   }
 }
