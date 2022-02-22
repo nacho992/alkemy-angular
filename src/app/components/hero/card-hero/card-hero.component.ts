@@ -11,16 +11,15 @@ export class CardHeroComponent implements OnInit {
 
   @Input() hero: Hero;
 
-  constructor(private localStorageSvc: StorageService) { }
+  constructor(private storageService: StorageService) { }
   getIcon(): string {
     return this.hero.isFavorite ? 'plus-circle-fill.svg' : 'plus-circle.svg';
   }
 
   toggleFavorite(): void {
     const isFavorite = this.hero.isFavorite;
-    this.getIcon();
     this.hero.isFavorite = !isFavorite;
-    this.localStorageSvc.addOrRemoveFavorite(this.hero);
+    this.storageService.addOrRemoveFavorite(this.hero);
   }
 
   ngOnInit(): void {

@@ -5,141 +5,81 @@
 </header>
 
 <div class="grid-in">
-    <div class="container">
-        <input type="radio" name="dot" id="one">
-        <input type="radio" name="dot" id="two">
-        <div class="main-card">
-          <div class="cards">
-            <div class="card">
-             <div class="content">
-               <div class="img">
-                <!--- <img src="images/img1.jpg" alt="">-->
-               </div>
-               <div class="details">
-                 <div class="name">Andrew Neil</div>
-                 <div class="job">Web Designer</div>
-               </div>
-               <div class="media-icons">
-                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                 <a href="#"><i class="fab fa-twitter"></i></a>
-                 <a href="#"><i class="fab fa-instagram"></i></a>
-                 <a href="#"><i class="fab fa-youtube"></i></a>
-               </div>
-             </div>
+  <div class="container" *ngIf="heros.length != 0">
+    <input type="radio" name="dot" id="one">
+    <input type="radio" name="dot" id="two">
+    <div class="main-card">
+
+      <div class="cards">
+        <div class="card" *ngFor="let hero of heros; let i = index">
+          <div class="content">
+            <div class="img">
+              <img src="{{hero.image.url}}" alt="" />
             </div>
-            <div class="card">
-             <div class="content">
-               <div class="img">
-                <!--- <img src="images/img2.jpg" alt="">--->
-               </div>
-               <div class="details">
-                 <div class="name">Jasmine Carter</div>
-                 <div class="job">UI Designer</div>
-               </div>
-               <div class="media-icons">
-                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                 <a href="#"><i class="fab fa-twitter"></i></a>
-                 <a href="#"><i class="fab fa-instagram"></i></a>
-                 <a href="#"><i class="fab fa-youtube"></i></a>
-               </div>
-             </div>
+            <div class="details">
+              <div class="name">{{hero.name}}</div>
+              <div class="job">{{hero.biography["full-name"]}}</div>
+              <div class="name">Total Power States:</div>
+              <span class="badge bg-primary rounded-pill"> {{heroTotalPowerStates(hero.id)}} </span>
             </div>
-            <div class="card">
-             <div class="content">
-               <div class="img">
-                <!-- <img src="images/img3.jpg" alt="">---->
-               </div>
-               <div class="details">
-                 <div class="name">Justin Chung</div>
-                 <div class="job">Web Devloper</div>
-               </div>
-               <div class="media-icons">
-                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                 <a href="#"><i class="fab fa-twitter"></i></a>
-                 <a href="#"><i class="fab fa-instagram"></i></a>
-                 <a href="#"><i class="fab fa-youtube"></i></a>
-               </div>
-             </div>
+            <div class="multi-button">
+              <button class="fas fa-heart" [routerLink]="['/hero-details', hero.id]">
+                <img as="image" width="21" height="21" src="../../../assets/icons/three-dots-vertical.svg" alt="add" />
+              </button>
             </div>
-          </div>
-          <div class="cards">
-            <div class="card">
-             <div class="content">
-               <div class="img">
-                 <!---<img src="images/img4.jpg" alt="">--->
-               </div>
-               <div class="details">
-                 <div class="name">Appolo Reef</div>
-                 <div class="job">Web Designer</div>
-               </div>
-               <div class="media-icons">
-                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                 <a href="#"><i class="fab fa-twitter"></i></a>
-                 <a href="#"><i class="fab fa-instagram"></i></a>
-                 <a href="#"><i class="fab fa-youtube"></i></a>
-               </div>
-             </div>
-            </div>
-            <div class="card">
-             <div class="content">
-               <div class="img">
-                 <!--<img src="images/img5.jpg" alt="">---->
-               </div>
-               <div class="details">
-                 <div class="name">Adrina Calvo</div>
-                 <div class="job">UI Designer</div>
-               </div>
-               <div class="media-icons">
-                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                 <a href="#"><i class="fab fa-twitter"></i></a>
-                 <a href="#"><i class="fab fa-instagram"></i></a>
-                 <a href="#"><i class="fab fa-youtube"></i></a>
-               </div>
-             </div>
-            </div>
-            <div class="card">
-             <div class="content">
-               <div class="img">
-                 <!--<img src="images/img6.jpeg" alt="">--->
-               </div>
-               <div class="details">
-                 <div class="name">Nicole Lewis</div>
-                 <div class="job">Web Devloper</div>
-               </div>
-               <div class="media-icons">
-                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                 <a href="#"><i class="fab fa-twitter"></i></a>
-                 <a href="#"><i class="fab fa-instagram"></i></a>
-                 <a href="#"><i class="fab fa-youtube"></i></a>
-               </div>
-             </div>
+            <div class="multi-button-more">
+              <button class="fas fa-heart" (click)="delteTeam(hero)">
+                <img as="image" width="21" height="21" src="../../../assets/icons/trash.svg" alt="add" />
+              </button>
             </div>
           </div>
         </div>
-        <div class="button">
-          <label for="one" class=" active one"></label>
-          <label for="two" class="two"></label>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="heros.length == 0" class="container-resumen">
+    <div class="cards">
+      <div class="card">
+        <div class="content">
+          <h3>Nothing to show,
+            search and add heroes or villains to your team</h3>
         </div>
       </div>
-    
-    <div class="container-resumen">
-            <div class="cards">
-                <div class="card">
-                    <div class="content">
-                      <div class="img">
-                        <!--<img src="images/img6.jpeg" alt="">--->
-                      </div>
-                      <div class="details">
-                        <div class="name">Nicole Lewis</div>
-                        <div class="job">Web Devloper</div>
-                      </div>
-                      <div class="media-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                      </div>
-                    </div>
-            </div>
+    </div>
+  </div>
+
+  <div class="container-resumen">
+    <div class="cards">
+      <div class="card">
+        <h3>Your Team</h3>
+        <div>
+          <div class="details">
+            <div class="name">Nicole Lewis</div>
+          </div>
+          <ol *ngIf="heros.length != 0" class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">average weight</div>
+
+              </div>
+              <span class="badge bg-primary rounded-pill"> {{average_weight}} Kg </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">average height</div>
+
+              </div>
+              <span class="badge bg-primary rounded-pill"> {{average_height}} Cm </span>
+            </li>
+          </ol>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="heros.length != 0" class="button">
+  <label for="one" class="active one"></label>
+  <label for="two" class="two"></label>
 </div>

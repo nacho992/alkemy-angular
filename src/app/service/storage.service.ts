@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Hero } from '../interfaces/Hero.interface';
 const MY_FAVORITES = 'myFavorites';
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
+  alignmentBad = 0;
+  alignmentGood = 0;
   private herosFavSubject = new BehaviorSubject<Hero[]>(null);
-  herosFav$ = this.herosFavSubject.asObservable();
 
   constructor() {
     this.initialStorage();
   }
 
-  addOrRemoveFavorite(hero: Hero): void {
+  public get herosStoraged(): Observable<Hero[]>{
+    return this.herosFavSubject.asObservable()
+  }
+
+  public addOrRemoveFavorite(hero: Hero): void {
     const { id } = hero;
     const currentsFav = this.getFavoritesheros();
     const found = !!currentsFav.find((fav: Hero) => fav.id === id);
@@ -46,7 +51,7 @@ export class StorageService {
 
   }
 
-  getFavoritesheros(): any {
+  public getFavoritesheros(): any {
     try {
       const herosFav = JSON.parse(localStorage.getItem(MY_FAVORITES));
       this.herosFavSubject.next(herosFav);
@@ -56,7 +61,7 @@ export class StorageService {
     }
   }
 
-  clearStorage(): void {
+  public clearStorage(): void {
     try {
       localStorage.clear();
     } catch (error) {

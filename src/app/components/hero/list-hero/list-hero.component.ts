@@ -33,10 +33,6 @@ export class ListHeroComponent implements OnInit {
     this.getHeros();
   }
 
-  getTeam(): void{
-    console.log('heros fav')
-  }
-
   inputSearchByName(event: string): void{
     this.query = event;
     if (this.query != '') {
