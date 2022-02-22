@@ -1,5 +1,4 @@
 * {
-  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 .grid-header {
@@ -20,15 +19,15 @@
     minmax(var(--auto-grid-min-size), 1fr)
   );
 }
-body {
+/* body {
   display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   background: #f2f2f2;
   position: relative;
-}
-body::before {
+} */
+/* body::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -36,7 +35,7 @@ body::before {
   clip-path: inset(47% 0 0 0);
   z-index: -1;
   height: 100%;
-}
+} */
 ::selection {
   background: #ff676d;
   color: #fff;
@@ -67,7 +66,7 @@ body::before {
 }
 
 #two:checked ~ .main-card {
-  margin-left: -120%;
+  margin-left: -150%;
 }
 .container .main-card .cards {
   display: flex;
@@ -119,25 +118,7 @@ body::before {
   margin-top: 10px;
   display: flex;
 }
-.media-icons a {
-  text-align: center;
-  line-height: 33px;
-  height: 35px;
-  width: 35px;
-  margin: 0 4px;
-  font-size: 14px;
-  color: #fff;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  background: #d9dde0;
-  transition: all 0.3s ease;
-}
-.media-icons a:hover {
-  color: #ff676d;
-  background-color: #fff;
-  border-color: #ff676d;
-}
-.button {
+.container .button {
   width: 100%;
   display: flex;
   justify-content: center;

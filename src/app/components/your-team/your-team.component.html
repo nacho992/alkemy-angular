@@ -34,19 +34,24 @@
             </div>
           </div>
         </div>
-
       </div>
-    </div>
-  </div>
 
-  <div *ngIf="heros.length == 0" class="container-resumen">
-    <div class="cards">
-      <div class="card">
-        <div class="content">
-          <h3>Nothing to show,
-            search and add heroes or villains to your team</h3>
+
+      <div *ngIf="heros.length == 0" class="container-resumen">
+        <div class="cards">
+          <div class="card">
+            <div class="content">
+              <h3>Nothing to show,
+                search and add heroes or villains to your team</h3>
+            </div>
+          </div>
         </div>
       </div>
+
+    </div>
+    <div *ngIf="heros.length != 0" class="button">
+      <label for="one" class="active one"></label>
+      <label for="two" class="two"></label>
     </div>
   </div>
 
@@ -78,8 +83,5 @@
       </div>
     </div>
   </div>
-</div>
-<div *ngIf="heros.length != 0" class="button">
-  <label for="one" class="active one"></label>
-  <label for="two" class="two"></label>
+
 </div>
