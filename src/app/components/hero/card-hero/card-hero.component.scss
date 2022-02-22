@@ -32,63 +32,11 @@
             box-shadow:0 0 2rem -1rem rgba(0,0,0,.05);
             &:hover {
                 //background:var(--text);
-                background: #df3b3b;
+                background: #3b88df;
                 color:var(--background);
                 box-shadow:0 0 2rem -1rem rgba(0,0,0,.05);
-            }
-            &:first-child:nth-last-child(1) { //If there is 1 child
-                left:25%;
-                top:25%;
-            }
-            &:first-child:nth-last-child(2),
-            &:first-child:nth-last-child(2) ~ * { //If there are 2 children
-                &:nth-child(1) {
-                    left:37.5%;
-                    top:18.75%;
-                }
-                &:nth-child(2) {
-                    left:18.75%;
-                    top:37.5%;
-                }
-            }
-            &:first-child:nth-last-child(3),
-            &:first-child:nth-last-child(3) ~ * { //If there are 3 children
-                &:nth-child(1) {
-                    left:50%;
-                    top:15.625%;
-                }
-                &:nth-child(2) {
-                    left:25%;
-                    top:25%;
-                }
-                &:nth-child(3) {
-                    left:15.625%;
-                    top:50%;
-                }
-            }
-            &:first-child:nth-last-child(4), //If there are 4 children, if first child is also 4th item from bottom get self, and
-            &:first-child:nth-last-child(4) ~ * { //If there are 4 children, if first child is also 4th item from bottom get siblings
-                &:nth-child(1) {
-                    left:62.5%;
-                    top:18.75%;
-                }
-                &:nth-child(2) {
-                    left:37.5%;
-                    top:18.75%;
-                }
-                &:nth-child(3) {
-                    left:18.75%;
-                    top:37.5%;
-                }
-                &:nth-child(4) {
-                    left:18.75%;
-                    top:62.5%;
-                }
-            }
+            } 
         }
     }
-    &:hover .multi-button, .multi-button:focus-within { //Hover or a button inside is focused
-        width:10rem;
-        height:10rem;
-    }
+
 }

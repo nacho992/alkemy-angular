@@ -1,22 +1,14 @@
 
 <app-search-input (inputSearch)="(inputSearchByName($event))"></app-search-input>
 
-<!-- TEAM -->
-
-<!--  -->
+<h2 *ngIf="heros.length == 0">look for a hero or villain in the search engine</h2>
 
 <app-alert *ngIf="!responseApi" [mensaje]="mensaje" ></app-alert>
 
 <h1 *ngIf="heros.length > 0">All heros with {{query}}</h1>
-<div class="grid">
-  
-    <h2 *ngIf="heros.length == 0">look for a hero or villain in the search engine</h2>
+
+<div *ngIf="heros.length !== 0" class="grid">
   
   <app-card-hero *ngFor="let hero of heros" [hero]="hero"></app-card-hero>
-  <!-- Not found -->
-  <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="heros.length === 0">
-    <h2>
-      nothing to show...</h2>
-  </div>
   
 </div>

@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
+import { YourTeamComponent } from './components/your-team/your-team.component';
+
+const routerOptions: ExtraOptions = {
+  anchorScrolling: "enabled",
+  scrollPositionRestoration: 'enabled'
+}
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'your-team',
+    component: YourTeamComponent
   },
   {
     path: 'home',
@@ -18,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
