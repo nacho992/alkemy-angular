@@ -4,6 +4,7 @@ import { ResponseName } from 'src/app/interfaces/ResponseName.interface';
 import { HeroService } from 'src/app/service/hero.service';
 import { filter, take } from 'rxjs/operators';
 import { Hero } from 'src/app/interfaces/Hero.interface';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
   selector: 'app-list-hero',
@@ -14,8 +15,6 @@ export class ListHeroComponent implements OnInit {
 
   query: string = '';
 
-  responseApi: boolean = true;
-
   heros: Hero[] = [];
 
   mensaje: string;
@@ -23,8 +22,7 @@ export class ListHeroComponent implements OnInit {
   color: 'danger'
 
   constructor(private heroService: HeroService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     if (this.query != '') {
@@ -58,14 +56,15 @@ export class ListHeroComponent implements OnInit {
             this.heros = [...res.results]
           }
           if (res.response == 'error') {
-            alert('character with given name not found')
+            this.toastService.showDanger('character with given name '+ this.query +' not found')
             this.heros = []
           }
           },
           error => {
-            alert('character with given name not found')
+            this.toastService.showDanger('server error')
             console.log(error)
           })
     }
   }
+
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Hero } from '../interfaces/Hero.interface';
+import { ToastService } from './toast.service';
 const MY_FAVORITES = 'myFavorites';
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,11 @@ export class StorageService {
   alignmentGood = 0;
   private herosFavSubject = new BehaviorSubject<Hero[]>(null);
 
-  constructor() {
+  constructor(private toastService: ToastService) {
     this.initialStorage();
   }
 
-  public get herosStoraged(): Observable<Hero[]>{
+  public get herosStoraged(): Observable<Hero[]> {
     return this.herosFavSubject.asObservable()
   }
 
@@ -30,10 +31,10 @@ export class StorageService {
       const currentsFav = this.getFavoritesheros();
       localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
       this.herosFavSubject.next([...currentsFav, hero]);
-     /*  this.toastrSvc.success(`${hero.name} added to favorite`, 'RickAndMortyAPP'); */
+      this.toastService.showSuccess(`${hero.name} added to favorite`);
     } catch (error) {
       console.log('Error saving localStorage', error);
-      /* this.toastrSvc.error(`Error saving localStorage ${error} `, 'RickAndMortyAPP'); */
+      this.toastService.showDanger(`Error saving localStorage ${error} `);
     }
   }
 
@@ -43,10 +44,10 @@ export class StorageService {
       const heros = currentsFav.filter(item => item.id !== id);
       localStorage.setItem(MY_FAVORITES, JSON.stringify([...heros]));
       this.herosFavSubject.next([...heros]);
-   /*    this.toastrSvc.warning(`Removed from favorite`, 'RickAndMortyAPP'); */
+      this.toastService.showWarning('delete from your team');
     } catch (error) {
       console.log('Error removing localStorage', error);
- /*      this.toastrSvc.error(`Error removing localStorage ${error} `, 'RickAndMortyAPP') */;
+      this.toastService.showDanger(`Error removing localStorage ${error} `);
     }
 
   }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
   selector: 'app-search-input',
@@ -10,7 +11,7 @@ export class SearchInputComponent implements OnInit {
 
   @Output() inputSearch = new EventEmitter<string>();
 
-  constructor(private router: Router) { }
+  constructor(private toastService: ToastService) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +20,7 @@ export class SearchInputComponent implements OnInit {
     if (value != '' && value.length > 2) {
       this.inputSearch.emit(value);
     }else{
-      alert('you must enter a marvel or dc character')
+      this.toastService.showDanger('you must enter a marvel, dc, others character');
     }
   }
 
