@@ -22,6 +22,10 @@ const routes: Routes = [
     loadChildren: () => import('../app/components/pages/home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'sig-in',
+    loadChildren: () => import('../app/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: 'hero-details/:id', 
     loadChildren: () => import('./components/hero/details-hero/details-hero.module').then(m => m.DetailsHeroModule)
   }

@@ -19,7 +19,7 @@ export class CardHeroComponent implements OnInit {
   toggleFavorite(): void {
     const isFavorite = this.hero.isFavorite;
     this.hero.isFavorite = !isFavorite;
-    this.storageService.addOrRemoveFavorite(this.hero);
+    this.storageService.addToFavorite(this.hero);
   }
 
   ngOnInit(): void {

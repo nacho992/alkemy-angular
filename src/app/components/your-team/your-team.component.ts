@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from 'src/app/interfaces/Hero.interface';
+import { User } from 'src/app/interfaces/User.interface';
+import { AuthService } from 'src/app/service/auth.service';
+import { JwtService } from 'src/app/service/jwtService.service';
 import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
@@ -11,20 +14,33 @@ export class YourTeamComponent implements OnInit {
 
   public heros: Hero[] = [];
 
-  average_weight: number = 0;
+  public loged: boolean = false
 
-  average_height: number = 0;
+  public average_weight: number = 0;
 
-  constructor(private storageService: StorageService) { }
+  public average_height: number = 0;
+
+  public user: User
+
+  constructor(private storageService: StorageService,
+              private authService: AuthService,
+              private jwtService: JwtService) { }
 
   ngOnInit(): void {
     this.storageService.herosStoraged
     .subscribe( (res: Hero[]) => {
       if (res.length > 0) {
-        console.log(this.heros)
         this.heros = res
         this.averageWeight();
         this.averageHeigth();
+      }
+    })
+    this.authService.isLogged.subscribe(res => {
+      if (res) {
+        this.loged = res
+        this.jwtService.userUpdate.subscribe(res =>{
+          this.user = res
+        })
       }
     })
 
@@ -45,7 +61,7 @@ export class YourTeamComponent implements OnInit {
   }
 
   public delteTeam(hero: Hero): void{
-    this.storageService.addOrRemoveFavorite(hero);
+    this.storageService.removeFromFavorite(hero.id);
     this.average_height = 0;
     this.average_weight = 0;
     this.averageWeight();

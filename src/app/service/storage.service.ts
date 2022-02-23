@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Hero } from '../interfaces/Hero.interface';
 import { ToastService } from './toast.service';
 const MY_FAVORITES = 'myFavorites';
+const ACCES_TOKEN = 'acces_token'
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +27,7 @@ export class StorageService {
     found ? this.removeFromFavorite(id) : this.addToFavorite(hero);
   }
 
-  private addToFavorite(hero: Hero): void {
+  public addToFavorite(hero: Hero): void {
     try {
       const currentsFav = this.getFavoritesheros();
       localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
@@ -38,7 +39,7 @@ export class StorageService {
     }
   }
 
-  private removeFromFavorite(id: number): void {
+  public removeFromFavorite(id: number): void {
     try {
       const currentsFav = this.getFavoritesheros();
       const heros = currentsFav.filter(item => item.id !== id);
@@ -70,10 +71,26 @@ export class StorageService {
     }
   }
 
+  public saveToken(token: string){
+    localStorage.setItem(ACCES_TOKEN, JSON.stringify(token))
+  }
+
+  public getToken(): string{
+    return localStorage.getItem(ACCES_TOKEN)
+  }
+
+  public removeToken(): void{
+    localStorage.removeItem(ACCES_TOKEN)
+  }
+
   private initialStorage(): void {
     const currents = JSON.parse(localStorage.getItem(MY_FAVORITES));
+    const currents_token = JSON.parse(localStorage.getItem(ACCES_TOKEN));
     if (!currents) {
       localStorage.setItem(MY_FAVORITES, JSON.stringify([]));
+    }
+    if (!currents_token) {
+      localStorage.setItem(ACCES_TOKEN, JSON.stringify([]));
     }
     this.getFavoritesheros();
   }

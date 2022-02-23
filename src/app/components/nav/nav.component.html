@@ -23,8 +23,8 @@
         </ul>
   
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          <button type="button" class="btn btn-outline-light me-2" [routerLink]="['sig-in']" *ngIf="!ok">Login</button>
+          <button type="button" class="btn btn-warning" *ngIf="ok" (click)="signOut()">Sign-out</button>
         </div>
       </div>
     </div>

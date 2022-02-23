@@ -60,9 +60,9 @@
       <div class="card">
         <h3>Your Team</h3>
         <div>
-          <div class="details">
-            <div class="name">Nicole Lewis</div>
-          </div>
+<!--           <div class="details">
+            <div class="name"*ngIf="loged && user !== null">{{user.email}}</div>
+          </div> -->
           <ol *ngIf="heros.length != 0" class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-start">
               <div class="ms-2 me-auto">
