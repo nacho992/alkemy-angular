@@ -29,7 +29,7 @@ export class YourTeamComponent implements OnInit {
   ngOnInit(): void {
     this.storageService.herosStoraged
     .subscribe( (res: Hero[]) => {
-      if (res.length > 0) {
+      if (res.length > -1) {
         this.heros = res
         this.averageWeight();
         this.averageHeigth();

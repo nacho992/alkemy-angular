@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
 import { ToastService } from 'src/app/service/toast.service';
 
@@ -24,6 +25,11 @@ export class SigInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.isLogged.subscribe(res => {
+      if (res) {
+        this.router.navigateByUrl('home')
+      }
+    })
   }
 
   public signIn(){

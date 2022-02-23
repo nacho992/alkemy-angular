@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { ResponseLogin } from "../interfaces/ResponseLogin.interface";
@@ -13,7 +14,8 @@ export class AuthService{
 
  constructor(private http: HttpClient,
             private storageService: StorageService,
-            private jwtService: JwtService){
+            private jwtService: JwtService,
+            private router: Router){
 
                 this.checkToken();
             }
@@ -38,9 +40,14 @@ export class AuthService{
     return this.loggendIn.asObservable();
   }
 
- private async checkToken(): Promise<void> {
-    const isExpired = await this.jwtService.isExpired(this.storageService.getToken());
+ private async checkToken(): Promise<boolean> {
+    const token = this.storageService.getToken();
+    var isExpired = false
+    if (!token) {
+      isExpired = true
+    }
     isExpired ? this.logout() : this.loggendIn.next(true);
+    return isExpired
  }
 
  public logout():void {

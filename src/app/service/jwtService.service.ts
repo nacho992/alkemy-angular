@@ -38,7 +38,7 @@ export class JwtService{
 
   public async decodeToken(): Promise<User>{
     this.token = await this.storage.getToken();
-    if (this.token.length > 2) {
+    if (this.token !== null) {
       this.user = helper.decodeToken(this.token);
       return this.user
     }
@@ -54,7 +54,7 @@ export class JwtService{
   }
 
   private verifyTOken():boolean{
-    return this.storage.getToken().length > 2
+    return this.storage.getToken() !== null
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
-import { JwtService } from 'src/app/service/jwtService.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +9,7 @@ import { JwtService } from 'src/app/service/jwtService.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   public ok: boolean = false
 
@@ -17,7 +17,8 @@ export class NavComponent implements OnInit {
     this.authService.isLogged.subscribe(res => {
       if (res) {
         this.ok = res
-
+      }else{
+        this.router.navigateByUrl('sig-in')
       }
     })
   }

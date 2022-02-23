@@ -30,9 +30,23 @@ export class StorageService {
   public addToFavorite(hero: Hero): void {
     try {
       const currentsFav = this.getFavoritesheros();
-      localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
-      this.herosFavSubject.next([...currentsFav, hero]);
-      this.toastService.showSuccess(`${hero.name} added to favorite`);
+      const filteredBad = currentsFav.filter((hero: Hero) => hero.biography.alignment === 'bad')
+      const filteredGood = currentsFav.filter((hero: Hero) => hero.biography.alignment === 'good')
+      if (currentsFav.length < 6) {
+        if (filteredBad.length < 3) {
+          localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
+          this.herosFavSubject.next([...currentsFav, hero]);
+          this.toastService.showSuccess(`${hero.name} added to favorite`);
+        }
+        if (filteredGood.length < 3) {
+          localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
+          this.herosFavSubject.next([...currentsFav, hero]);
+          this.toastService.showSuccess(`${hero.name} added to favorite`);
+        }
+      }else{
+        this.toastService.showWarning("full team, not added")
+      }
+    
     } catch (error) {
       console.log('Error saving localStorage', error);
       this.toastService.showDanger(`Error saving localStorage ${error} `);
@@ -85,12 +99,8 @@ export class StorageService {
 
   private initialStorage(): void {
     const currents = JSON.parse(localStorage.getItem(MY_FAVORITES));
-    const currents_token = JSON.parse(localStorage.getItem(ACCES_TOKEN));
     if (!currents) {
       localStorage.setItem(MY_FAVORITES, JSON.stringify([]));
-    }
-    if (!currents_token) {
-      localStorage.setItem(ACCES_TOKEN, JSON.stringify([]));
     }
     this.getFavoritesheros();
   }
