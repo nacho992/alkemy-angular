@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { ResponseName } from '../interfaces/ResponseName.interface';
 import { Hero } from '../interfaces/Hero.interface';
 import { take, tap } from 'rxjs/operators';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class HeroService {
 
   heros: BehaviorSubject<Hero[]> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastService: ToastService) { }
 
   public get herosData(): Observable<Hero[]> {
     return this.heros.asObservable();
@@ -28,15 +29,9 @@ export class HeroService {
         if (res.response == 'success') {
           this.heros.next([...res.results])
         }
-        if (res.response == 'error') {
-          //this.heros.next(null)
-        }
-        },
-        error => {
-          alert('character with given name not found')
-          this.heros.next(null)
-          console.log(error)
-        }));  
+      }
+     )
+    );  
   }
 
   getDetails(id: number): Observable<Hero>{

@@ -33,16 +33,17 @@ export class StorageService {
       const filteredBad = currentsFav.filter((hero: Hero) => hero.biography.alignment === 'bad')
       const filteredGood = currentsFav.filter((hero: Hero) => hero.biography.alignment === 'good')
       if (currentsFav.length < 6) {
-        if (filteredBad.length < 3) {
-          localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
-          this.herosFavSubject.next([...currentsFav, hero]);
-          this.toastService.showSuccess(`${hero.name} added to favorite`);
+        if (filteredBad.length < 3 && hero.biography.alignment === 'bad') {
+          this.addHero(hero,currentsFav)
+          this.toastService.showSuccess(`${hero.name} added to team bad`);
         }
-        if (filteredGood.length < 3) {
-          localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
-          this.herosFavSubject.next([...currentsFav, hero]);
-          this.toastService.showSuccess(`${hero.name} added to favorite`);
+        else this.toastService.showSuccess(`${hero.name} full team bad`);
+
+        if (filteredGood.length < 3 && hero.biography.alignment === 'good') {
+          this.addHero(hero,currentsFav)
+          this.toastService.showSuccess(`${hero.name} added to team good`);
         }
+        else this.toastService.showSuccess(`${hero.name} full team good`);
       }else{
         this.toastService.showWarning("full team, not added")
       }
@@ -51,6 +52,11 @@ export class StorageService {
       console.log('Error saving localStorage', error);
       this.toastService.showDanger(`Error saving localStorage ${error} `);
     }
+  }
+
+  private addHero(hero: Hero, currentsFav){
+    localStorage.setItem(MY_FAVORITES, JSON.stringify([...currentsFav, hero]));
+    this.herosFavSubject.next([...currentsFav, hero]);
   }
 
   public removeFromFavorite(id: number): void {
