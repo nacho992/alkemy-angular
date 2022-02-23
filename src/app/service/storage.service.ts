@@ -36,14 +36,15 @@ export class StorageService {
         if (filteredBad.length < 3 && hero.biography.alignment === 'bad') {
           this.addHero(hero,currentsFav)
           this.toastService.showSuccess(`${hero.name} added to team bad`);
-        }
-        else this.toastService.showSuccess(`${hero.name} full team bad`);
+        } else if(hero.biography.alignment === 'bad') {
+          this.toastService.showWarning(`${hero.name} full team bad`);}
 
         if (filteredGood.length < 3 && hero.biography.alignment === 'good') {
           this.addHero(hero,currentsFav)
           this.toastService.showSuccess(`${hero.name} added to team good`);
-        }
-        else this.toastService.showSuccess(`${hero.name} full team good`);
+        } else if (hero.biography.alignment === 'good') {
+          this.toastService.showWarning(`${hero.name} full team good`);}
+
       }else{
         this.toastService.showWarning("full team, not added")
       }
