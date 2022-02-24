@@ -11,32 +11,12 @@
     <div class="main-card">
 
       <div class="cards">
-        <div class="card" *ngFor="let hero of heros; let i = index">
-          <div class="content">
-            <div class="img">
-              <img src="{{hero.image.url}}" alt="" />
-            </div>
-            <div class="details">
-              <div class="name">{{hero.name}}</div>
-              <div class="job">{{hero.biography["full-name"]}}</div>
-              <div class="name">Total Power States:</div>
-              <p>Alignment: {{hero.biography.alignment}}</p>
-              <span class="badge bg-primary rounded-pill"> {{heroTotalPowerStates(hero.id)}} </span>
-            </div>
-            <div class="multi-button">
-              <button class="fas fa-heart" [routerLink]="['/hero-details', hero.id]">
-                <img as="image" width="21" height="21" src="../../../assets/icons/three-dots-vertical.svg" alt="add" />
-              </button>
-            </div>
-            <div class="multi-button-more">
-              <button class="fas fa-heart" (click)="delteTeam(hero)">
-                <img as="image" width="21" height="21" src="../../../assets/icons/trash.svg" alt="add" />
-              </button>
-            </div>
-          </div>
-        </div>
+        <app-card-team *ngFor="let hero of heros.slice(0,3)" [hero]="hero"></app-card-team>
       </div>
 
+      <div class="cards">
+        <app-card-team *ngFor="let hero of heros.slice(3,6)" [hero]="hero"></app-card-team>
+      </div>
 
       <div *ngIf="heros.length == 0" class="container-resumen">
         <div class="cards">
@@ -56,33 +36,6 @@
     </div>
   </div>
 
-  <div class="container-resumen">
-    <div class="cards">
-      <div class="card">
-        <h3>Your Team</h3>
-        <div>
-<!--           <div class="details">
-            <div class="name"*ngIf="loged && user !== null">{{user.email}}</div>
-          </div> -->
-          <ol *ngIf="heros.length != 0" class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">average weight</div>
-
-              </div>
-              <span class="badge bg-primary rounded-pill"> {{average_weight}} Kg </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">average height</div>
-
-              </div>
-              <span class="badge bg-primary rounded-pill"> {{average_height}} Cm </span>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-card-resumen [user]="user" [loged]="loged"></app-card-resumen>
 
 </div>

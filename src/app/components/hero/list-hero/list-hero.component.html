@@ -1,9 +1,10 @@
 
 <app-search-input (inputSearch)="(inputSearchByName($event))"></app-search-input>
 
-<h2 *ngIf="heros.length == 0">look for a hero or villain in the search engine</h2>
-
-<h1 *ngIf="heros.length > 0">All heros with {{query}}</h1>
+<div class="wrapper">
+    <h2 *ngIf="heros.length == 0">look for a hero or villain in the search engine</h2>
+    <h1 *ngIf="heros.length > 0">All heros with {{query}}</h1>
+</div>
 
 <div *ngIf="heros.length !== 0" class="grid">
   

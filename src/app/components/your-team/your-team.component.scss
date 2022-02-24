@@ -29,20 +29,7 @@
   overflow: initial;
   padding: 0px 0;
 }
-.container-resumen {
-  display: contents;
-  margin: 0px;
-  padding-top: 15px;
-}
-.container-resumen .cards .card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 60px;
-  margin: 15px;
-  height: 350px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-  transition: all 0.4s ease;
-}
+
 .container .main-card {
   display: flex;
   width: 200%;
@@ -56,52 +43,6 @@
 .container .main-card .cards {
   display: flex;
   margin: 0px 0px;
-}
-.main-card .cards .card {
-  margin: 10px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-  transition: all 0.4s ease;
-}
-.main-card .cards .card:hover {
-  transform: translateY(-15px);
-}
-.cards .card .content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: start;
-}
-.cards .card .content .img {
-  height: 130px;
-  width: 130px;
-  border-radius: 50%;
-  padding: 3px;
-  background: #ff676d;
-  margin-bottom: 14px;
-}
-.card .content .img img {
-  height: 100%;
-  width: 100%;
-  border: 3px solid #ffff;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.card .content .name {
-  font-size: 20px;
-  font-weight: 500;
-}
-.card .content .job {
-  font-size: 20px;
-  color: #ff676d;
-}
-.card .content .media-icons {
-  margin-top: 10px;
-  display: flex;
 }
 .container .button {
   width: 100%;
@@ -141,77 +82,6 @@ input[type="radio"]{
   .main-card .cards .card {
     /* margin: 20px 0 10px 0; */
     width: 100%;
-  }
-}
-
-.container .main-card .cards .card {
-  &:hover {
-    box-shadow: 0 1px 20px #a5a6a7;
-    cursor: pointer;
-  }
-  .multi-button-more {
-    z-index: 0;
-    position: absolute;
-    top: 1.25rem;
-    left: 1.25rem;
-    border-radius: 100%;
-    width: 0rem;
-    height: 0rem;
-    transform: translate(-50%, -50%);
-    transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
-    button {
-      display: grid;
-      place-items: center;
-      position: absolute;
-      width: 2rem;
-      height: 2rem;
-      border: none;
-      border-radius: 100%;
-      background: var(--background);
-      color: var(--text);
-      transform: translate(50%, -50%);
-      cursor: pointer;
-      transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
-      box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.05);
-      &:hover {
-        //background:var(--text);
-        background: #ff9191;
-        color: var(--background);
-        box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.05);
-      }
-    }
-  }
-  .multi-button {
-    z-index: 0;
-    position: absolute;
-    top: 1.25rem;
-    left: 1.25rem;
-    border-radius: 100%;
-    width: 0rem;
-    height: 0rem;
-    transform: translate(-50%, -50%);
-    transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
-    button {
-      display: grid;
-      place-items: center;
-      position: absolute;
-      width: 2rem;
-      height: 2rem;
-      border: none;
-      border-radius: 100%;
-      background: var(--background);
-      color: var(--text);
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-      transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
-      box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.05);
-      &:hover {
-        //background:var(--text);
-        background: #ff9191;
-        color: var(--background);
-        box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.05);
-      }
-    }
   }
 }
 

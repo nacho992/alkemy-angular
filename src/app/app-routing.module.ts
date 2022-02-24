@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions } from '@angular/router';
-import { YourTeamComponent } from './components/your-team/your-team.component';
 import { AuthGuard } from './guard/auth.guard';
 
 const routerOptions: ExtraOptions = {
@@ -16,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'your-team',
-    component: YourTeamComponent,
+    loadChildren: () => import('../app/components/your-team//your-team.module').then(m => m.YourTeamModule),
     canActivate: [AuthGuard]
   },
   {

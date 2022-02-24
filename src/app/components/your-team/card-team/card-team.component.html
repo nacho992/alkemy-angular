@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="content">
+      <div class="img">
+        <img src="{{hero.image.url}}" alt="" />
+      </div>
+      <div class="details">
+        <div class="name">{{hero.name}}</div>
+        <div class="job">{{hero.biography["full-name"]}}</div>
+        <div class="name">Total Power States:</div>
+        <p>Alignment: {{hero.biography.alignment}}</p>
+        <span class="badge bg-primary rounded-pill"> {{heroTotalPowerStates()}} </span>
+      </div>
+      <div class="multi-button">
+        <button class="fas fa-heart" [routerLink]="['/hero-details', hero.id]">
+          <img as="image" width="21" height="21" src="../../../../assets/icons/three-dots-vertical.svg" alt="add" />
+        </button>
+      </div>
+      <div class="multi-button-more">
+        <button class="fas fa-heart" (click)="delteTeam(hero)">
+          <img as="image" width="21" height="21" src="../../../../assets/icons/trash.svg" alt="add" />
+        </button>
+      </div>
+    </div>
+  </div>

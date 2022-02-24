@@ -8,8 +8,9 @@ const ACCES_TOKEN = 'acces_token'
   providedIn: 'root'
 })
 export class StorageService {
-  alignmentBad = 0;
-  alignmentGood = 0;
+
+  private averageW$ = new BehaviorSubject<number>(0)
+  private averageH$ = new BehaviorSubject<number>(0)
   private herosFavSubject = new BehaviorSubject<Hero[]>(null);
 
   constructor(private toastService: ToastService) {
@@ -18,6 +19,14 @@ export class StorageService {
 
   public get herosStoraged(): Observable<Hero[]> {
     return this.herosFavSubject.asObservable()
+  }
+
+  public get teamAverageH(): Observable<number>{
+    return this.averageH$.asObservable();
+  }
+
+  public get teamAverageW(): Observable<number>{
+    return this.averageW$.asObservable();
   }
 
   public addOrRemoveFavorite(hero: Hero): void {
@@ -44,7 +53,9 @@ export class StorageService {
           this.toastService.showSuccess(`${hero.name} added to team good`);
         } else if (hero.biography.alignment === 'good') {
           this.toastService.showWarning(`${hero.name} full team good`);}
-
+          //update averages
+          this.averageWeight()
+          this.averageHeigth()
       }else{
         this.toastService.showWarning("full team, not added")
       }
@@ -67,6 +78,9 @@ export class StorageService {
       localStorage.setItem(MY_FAVORITES, JSON.stringify([...heros]));
       this.herosFavSubject.next([...heros]);
       this.toastService.showWarning('delete from your team');
+      //update averages
+      this.averageWeight()
+      this.averageHeigth()
     } catch (error) {
       console.log('Error removing localStorage', error);
       this.toastService.showDanger(`Error removing localStorage ${error} `);
@@ -78,6 +92,9 @@ export class StorageService {
     try {
       const herosFav = JSON.parse(localStorage.getItem(MY_FAVORITES));
       this.herosFavSubject.next(herosFav);
+      //update averages
+      this.averageWeight()
+      this.averageHeigth()
       return herosFav;
     } catch (error) {
       console.log('Error getting favorites from localStorage', error);
@@ -92,6 +109,25 @@ export class StorageService {
     }
   }
 
+  private averageHeigth(): void{
+    this.averageH$.next(0)
+    var avr = 0
+    this.herosStoraged.subscribe( (res: Hero[]) => {
+      res.map(hero => avr += parseInt(hero.appearance.height[1]))
+      this.averageH$.next(avr)
+    })
+  }
+
+  public averageWeight(): void{
+    this.averageW$.next(0)
+    var avr = 0
+    this.herosStoraged.subscribe( (res: Hero[]) => {
+      res.map(hero => avr += parseInt(hero.appearance.weight[1]))
+      this.averageW$.next(avr)
+    })
+  }
+
+  /* TOKEN */
   public saveToken(token: string){
     localStorage.setItem(ACCES_TOKEN, JSON.stringify(token))
   }
