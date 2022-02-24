@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
@@ -10,6 +9,7 @@ import { ToastService } from 'src/app/service/toast.service';
 export class SearchInputComponent implements OnInit {
 
   @Output() inputSearch = new EventEmitter<string>();
+  @Output() inputClear = new EventEmitter<boolean>();
 
   constructor(private toastService: ToastService) { }
 
@@ -22,6 +22,10 @@ export class SearchInputComponent implements OnInit {
     }else{
       this.toastService.showDanger('you must enter a marvel, dc, others character');
     }
+  }
+
+  onClear(): void{
+    this.inputClear.emit(true)
   }
 
 }

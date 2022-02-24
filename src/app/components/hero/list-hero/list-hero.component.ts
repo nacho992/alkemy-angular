@@ -38,6 +38,10 @@ export class ListHeroComponent implements OnInit {
     }
   }
 
+  inputClear(): void{
+    this.heros = []
+  }
+
   private getHeros(){
     /* if there is no query, this method checks if there is any previous data to show, if there is, it returns them */
     this.heroService.herosData.subscribe( res => {

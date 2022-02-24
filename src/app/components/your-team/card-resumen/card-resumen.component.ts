@@ -29,7 +29,6 @@ export class CardResumenComponent implements OnInit {
         this.heros = res;
         this.average_height = this.averageHeigth();
         this.average_weight = this.averageWeight();
-        console.log(this.averageHeigth(), this.averageWeight())
       }
     })
   }

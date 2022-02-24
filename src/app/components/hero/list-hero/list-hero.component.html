@@ -1,5 +1,5 @@
 
-<app-search-input (inputSearch)="(inputSearchByName($event))"></app-search-input>
+<app-search-input (inputSearch)="(inputSearchByName($event))" (inputClear)="(inputClear())"></app-search-input>
 
 <div class="wrapper">
     <h2 *ngIf="heros.length == 0">look for a hero or villain in the search engine</h2>
