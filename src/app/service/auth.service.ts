@@ -22,7 +22,8 @@ export class AuthService{
 
  private loggendIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
- url_log: string = 'http://challenge-react.alkemy.org/'
+/*  url_log: string = 'http://challenge-react.alkemy.org/' */
+ url_log: string = 'https://node-api-proxy-alkemy.herokuapp.com/'
 
  public login(user: User): Observable<ResponseLogin>{
      return this.http.post<ResponseLogin>(`${this.url_log}`, user).pipe(tap(
