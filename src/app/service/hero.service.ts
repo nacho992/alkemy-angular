@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ResponseName } from '../interfaces/ResponseName.interface';
 import { Hero } from '../interfaces/Hero.interface';
-import { take, tap } from 'rxjs/operators';
-import { ToastService } from './toast.service';
+import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,12 @@ export class HeroService {
 
   token = '10227816847035198'
 
-  api_url = '/api/'
+  /* api_url = '/api/' //use this with proxy.conf.json en case Cors faliur */
+  api_url = environment.URL_SUPERHERO
 
   heros: BehaviorSubject<Hero[]> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient, private toastService: ToastService) { }
+  constructor(private http: HttpClient) { }
 
   public get herosData(): Observable<Hero[]> {
     return this.heros.asObservable();

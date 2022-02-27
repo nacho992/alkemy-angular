@@ -21,4 +21,4 @@ The team must have 6 members. There should be 3 members with good orientation an
 
 ## Deployed
 
-click here -->>[Alkemy-app](https://62174f1ff84e809a0e42f99e--vigilant-spence-3895e4.netlify.app/)
+click here -->>[Alkemy-app](https://vigilant-spence-3895e4.netlify.app)
