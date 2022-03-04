@@ -23,4 +23,4 @@ The team must have 6 members. There should be 3 members with good orientation an
 ## Deployed
 
 click here -->>[Alkemy-app](https://herosalkemy.web.app/)
-If using the browser gives an error, refresh the browser
+if searching for a character gives a server error, refresh the browser
