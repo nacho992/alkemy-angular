@@ -18,7 +18,10 @@ export class HeroService {
 
   heros: BehaviorSubject<Hero[]> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    const headers = this.setAuthorization();
+    this.http.get<ResponseName>(this.api_url + `${this.token}` + `/search` + `/spider`, {headers:headers})
+   }
 
   public get herosData(): Observable<Hero[]> {
     return this.heros.asObservable();
@@ -37,6 +40,16 @@ export class HeroService {
 
   getDetails(id: number): Observable<Hero>{
     return this.http.get<Hero>(this.api_url + `${this.token}` + `/${id}`)
+  }
+
+  private setAuthorization(): HttpHeaders{
+    const headers = new HttpHeaders({
+     'Content-Type': 'application/json;charset=utf-8, text/plain',
+     'Access-Control-Allow-Origin' : "*",
+     'method': 'GET',
+     'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, Authorization, X-Request-With'
+    })
+    return headers
   }
 
 }

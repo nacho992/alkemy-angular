@@ -2,8 +2,9 @@
 
 this project is the angular Alkemy Challenge
 
-## Development server
+## Development server local
 
+Download and run `npm install` for dependencies.
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 due to problems with 'CORS' the `start` script executes:
 `ng serve --proxy-config proxy.conf.json`
@@ -21,4 +22,4 @@ The team must have 6 members. There should be 3 members with good orientation an
 
 ## Deployed
 
-click here -->>[Alkemy-app](https://vigilant-spence-3895e4.netlify.app)
+click here -->>[Alkemy-app](https://herosalkemy.web.app/)
