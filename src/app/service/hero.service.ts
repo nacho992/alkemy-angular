@@ -19,8 +19,6 @@ export class HeroService {
   heros: BehaviorSubject<Hero[]> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) {
-    const headers = this.setAuthorization();
-    this.http.get<ResponseName>(this.api_url + `${this.token}` + `/search` + `/spider`, {headers:headers})
    }
 
   public get herosData(): Observable<Hero[]> {
