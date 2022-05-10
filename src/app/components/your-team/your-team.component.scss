@@ -2,15 +2,18 @@
   font-family: "Poppins", sans-serif;
 }
 .grid-header {
-  margin: 15px;
-  padding: 40px 0px 0px 40px;
+  margin: auto;
+  padding: 18px;
+  max-width: 1200px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 }
 .grid-in {
   margin: auto;
+  overflow: hidden;
+  max-width: 1200px;
   padding: 0px 40px 40px 40px;
-  box-shadow: 0 5px 10px rgb(0 0 0 / 25%);;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 25%);
   gap: 0.5rem;
   --auto-grid-min-size: 35rem;
   display: grid;
@@ -59,22 +62,25 @@
   cursor: pointer;
   transition: all 0.5s ease;
 }
-.button label.active{
+.button label.active {
   width: 35px;
 }
-#one:checked ~ .button .one{
+#one:checked ~ .button .one {
   width: 35px;
 }
-#one:checked ~ .button .two{
+#one:checked ~ .button .two {
   width: 15px;
 }
-#two:checked ~ .button .one{
+#two:checked ~ .button .one {
   width: 15px;
 }
-#two:checked ~ .button .two{
+#two:checked ~ .button .two {
   width: 35px;
+  top: 0;
+  left: 0; 
+  behavior: 'smooth';
 }
-input[type="radio"]{
+input[type="radio"] {
   display: none;
 }
 
@@ -89,6 +95,7 @@ input[type="radio"]{
   .grid-in {
     margin: 15px;
     padding: 0px 20px 0px 20px;
+    overflow: hidden;
     gap: 0.5rem;
     --auto-grid-min-size: 13rem;
     display: grid;

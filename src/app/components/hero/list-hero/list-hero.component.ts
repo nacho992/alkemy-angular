@@ -21,6 +21,8 @@ export class ListHeroComponent implements OnInit {
 
   color: 'danger'
 
+  loading: boolean = false
+
   constructor(private heroService: HeroService,
               private toastService: ToastService) { }
 
@@ -52,21 +54,23 @@ export class ListHeroComponent implements OnInit {
   }
 
   private getHeroByQuery(): void {
-    /*  */
+    this.loading = true
     if (this.query !== '') {
       this.heroService
         .getByName(this.query).subscribe(res => {
           if (res.response == 'success') {
             this.heros = [...res.results]
+            this.loading = false
           }
           if (res.response == 'error') {
             this.toastService.showDanger('character with given name '+ this.query +' not found')
             this.heros = []
+            this.loading = false
           }
           },
           error => {
             this.toastService.showDanger('server error')
-            console.log(error)
+            this.loading = false
           })
     }
   }

@@ -17,6 +17,8 @@ export class SigInComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  loading: boolean = false
+
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private toastService: ToastService,
@@ -33,13 +35,15 @@ export class SigInComponent implements OnInit {
   }
 
   public signIn(){
+    this.loading = true
     this.authService.login(this.datos.value).subscribe(
       res => {
         this.toastService.showSuccess('login successfully')
+        this.loading = false
         this.router.navigateByUrl('home')
       },
       error => {
-        console.log(error.error.error)
+        this.loading = false
         this.toastService.showDanger(error.error.error)
       }
     )

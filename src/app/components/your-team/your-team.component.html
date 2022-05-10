@@ -1,20 +1,20 @@
 <header>
-  <div class="grid-header">
-    <div class="name">Your Team</div>
+  <div>
+     <app-card-resumen [user]="user" [loged]="loged"></app-card-resumen>
   </div>
 </header>
 
 <div class="grid-in">
   <div class="container" *ngIf="heros.length != 0">
     <input type="radio" name="dot" id="one">
-    <input type="radio" name="dot" id="two">
+    <input *ngIf="heros.length > 3" type="radio" name="dot" id="two">
     <div class="main-card">
 
       <div class="cards">
         <app-card-team *ngFor="let hero of heros.slice(0,3)" [hero]="hero"></app-card-team>
       </div>
 
-      <div class="cards">
+      <div *ngIf="heros.length > 3" class="cards">
         <app-card-team *ngFor="let hero of heros.slice(3,6)" [hero]="hero"></app-card-team>
       </div>
 
@@ -30,12 +30,10 @@
       </div>
 
     </div>
-    <div *ngIf="heros.length != 0" class="button">
+    <div *ngIf="heros.length != 0 && heros.length > 3" class="button">
       <label for="one" class="active one"></label>
       <label for="two" class="two"></label>
     </div>
   </div>
-
-  <app-card-resumen [user]="user" [loged]="loged"></app-card-resumen>
 
 </div>

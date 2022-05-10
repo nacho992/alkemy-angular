@@ -1,17 +1,10 @@
-.container-resumen {
-    display: contents;
-    margin: 0px;
-    padding-top: 15px;
-  }
-.container-resumen .cards .card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 60px;
-    margin: 15px;
-    height: 350px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-    transition: all 0.4s ease;
-  }
+.grid-header {
+  margin: auto;
+  padding: 18px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
 
 li{
     margin: 10px;

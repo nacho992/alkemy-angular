@@ -4,6 +4,11 @@
 <div class="wrapper">
     <h2 *ngIf="heros.length == 0">look for a hero or villain in the search engine</h2>
     <h1 *ngIf="heros.length > 0">All heros with {{query}}</h1>
+    <div *ngIf="loading" class="d-flex justify-content-center">
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
 </div>
 
 <div *ngIf="heros.length !== 0" class="grid">
